@@ -1,4 +1,4 @@
-# Budgety Project
+# Budgety flask backend Project
 
 This project is a budget management and transaction handling application built using Python, Flask, and SQLAlchemy.
 
