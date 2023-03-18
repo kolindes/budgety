@@ -13,12 +13,6 @@ def create_app(config_object='config.development.DevelopmentConfig'):
     CORS(app)
     jwt = JWTManager(app)
 
-    # @app.before_request
-    # def before_request():
-    #     print(request.headers)
-        # if not request.headers.get('Content-Type'):
-        #     request.headers['Content-Type'] = 'application/json'
-
     @jwt.unauthorized_loader
     def unauthorized_callback(callback):
         response = get_base_response()
@@ -26,14 +20,12 @@ def create_app(config_object='config.development.DevelopmentConfig'):
         response['message'] = "Unauthorized access"
         return jsonify(response), 401
 
-    # @app.errorhandler(PyJWTError)
-    # def handle_jwt_error(error):
-    #     response = jsonify({
-    #         'status': 'error',
-    #         'message': 'Invalid access token',
-    #     })
-    #     response.status_code = 401
-    #     return response
+    @app.errorhandler(404)
+    def page_not_found(e):
+        response = get_base_response()
+        response['status'] = BaseResponseStatus.NOT_FOUND
+        response['message'] = str(e)
+        return jsonify(response), 404
 
     # Load the configuration
     app.config.from_object(obj=config_object)
