@@ -6,7 +6,7 @@ COPY . /app
 
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-EXPOSE 20000
+EXPOSE 5000
 
 ENV FLASK_APP=run.py
 
