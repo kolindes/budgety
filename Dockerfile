@@ -6,8 +6,8 @@ COPY . /app
 
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 20000
 
 ENV FLASK_APP=run.py
 
-CMD ["flask", "run", "--host=localhost"]
+CMD ["flask", "run", "--host=localhost --port=20000"]
