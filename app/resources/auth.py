@@ -45,7 +45,7 @@ class RegistrationResource(Resource):
         if User.query.filter_by(username=username).first():
             response['status'] = BaseResponseStatus.ERROR
             response['message'] = 'Username already exists'
-            return response, 400
+            return response, 409
 
         User.register(username, password)
 

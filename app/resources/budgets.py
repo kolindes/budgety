@@ -116,13 +116,11 @@ class BudgetsResource(Resource):
 
         if looking_category is None:
             response['status'] = BaseResponseStatus.ERROR
-            # f'Valid category name is required, got <{looking_category}>.'
             response['message'] = 'Invalid category name. Example: "food". '
             return response, 400
 
         if Budget.exists(looking_category) is False:
             response['status'] = BaseResponseStatus.ERROR
-            # f"Category <{looking_category}> not found in <{', '.join(Budget.category_names())}>"
             response['message'] = f'Category "{looking_category}" was not found.'
             return response, 404
 
@@ -145,10 +143,7 @@ class BudgetsResource(Resource):
             response['message'] = f'Impossible to delete the budget "{looking_category}" ' \
                                   f'as there are transactions in the budget: {len(transactions_by_bg)}.\n' \
                                   f'Delete or modify the transactions before deleting the budget.'
-            # response['message'] = f'Cannot delete non-empty Budget.\n' \
-            #                       f'<{looking_category}> contains [{len(transactions_by_bg)}] transactions.\n' \
-            #                       f'Remove/Edit transactions and try again.'
-            return response, 400
+            return response, 409
 
         Budget.delete_by_category(looking_category)
 

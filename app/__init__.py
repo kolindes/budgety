@@ -3,6 +3,8 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 
+import ssl
+
 from app.response_templates.utils import get_base_response, BaseResponseStatus
 
 db = SQLAlchemy()

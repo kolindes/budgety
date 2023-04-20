@@ -42,8 +42,8 @@ class TransactionsResource(Resource):
 
             if not summarized_transactions:
                 response['status'] = BaseResponseStatus.ERROR
-                response['message'] = "No transactions were found. Please add at least one transaction and try again."
-                return response, 400
+                response['message'] = f"No transactions were found. Please add at least one transaction and try again."
+                return response, 404
 
             budgets = Budget.get_budget_amounts()
 
