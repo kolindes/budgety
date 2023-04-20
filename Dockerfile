@@ -8,6 +8,6 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 5000
 
-ENV FLASK_APP=budgety.py
+ENV FLASK_APP=run.py
 
 CMD ["flask", "run", "--host=localhost"]
